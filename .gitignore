@@ -1,0 +1,12 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+.env
+
+.idea/.idea.ConfigService/.idea/aws.xml
+
+.DS_Store
+**/.DS_Store
