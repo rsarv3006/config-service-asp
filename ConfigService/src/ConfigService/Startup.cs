@@ -11,8 +11,8 @@ public class Startup
 {
   public Startup(IConfiguration configuration)
   {
-    Configuration = configuration;
-    Env.Load(".env", LoadOptions.TraversePath());
+      Configuration = configuration;
+      Env.Load(".env", LoadOptions.TraversePath());
   }
 
   public IConfiguration Configuration { get; }
@@ -30,6 +30,7 @@ public class Startup
     services.AddScoped<Repositories.ConfigRepository>();
     services.AddScoped<Repositories.UserRepository>();
     services.AddScoped<AlertService>();
+    services.AddHealthChecks();
 
   }
 
@@ -45,11 +46,13 @@ public class Startup
 
     app.UseRouting();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.UseEndpoints(endpoints =>
     {
       endpoints.MapControllers();
+      endpoints.MapHealthChecks("/health");
       endpoints.MapGet("/",
               async context =>
               {
