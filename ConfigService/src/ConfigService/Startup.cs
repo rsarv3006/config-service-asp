@@ -3,19 +3,21 @@ using ApiAlerts.Common.Services;
 using ApiUtilities.Common.Handlers;
 using ApiUtilities.Common.Interfaces;
 using DotNetEnv;
+using DotNetEnv.Configuration;
 using Microsoft.EntityFrameworkCore;
+using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
 
 namespace ConfigService;
 
 public class Startup
 {
-  public Startup(IConfiguration configuration)
-  {
-      Configuration = configuration;
-      Env.Load(".env", LoadOptions.TraversePath());
-  }
-
   public IConfiguration Configuration { get; }
+  
+  public Startup()
+  {
+    Configuration = new ConfigurationBuilder().AddEnvironmentVariables()
+      .AddDotNetEnv(".env", LoadOptions.TraversePath()).Build();
+  }
 
   // This method gets called by the runtime. Use this method to add services to the container
   public void ConfigureServices(IServiceCollection services)

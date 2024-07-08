@@ -14,7 +14,6 @@ public class ConfigController : ControllerBase
   private readonly ConfigRepository _configRepository;
   private readonly AlertService _alertService;
 
-
   public ConfigController(ConfigRepository configRepository, AlertService alertService)
   {
     _configRepository = configRepository;
