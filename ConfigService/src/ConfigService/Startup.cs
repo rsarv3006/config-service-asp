@@ -28,6 +28,7 @@ public class Startup
     services.AddScoped<IRequestHandler, RequestHandler>();
 
     services.AddScoped<Repositories.ConfigRepository>();
+    services.AddScoped<Repositories.UserRepository>();
     services.AddScoped<AlertService>();
 
   }

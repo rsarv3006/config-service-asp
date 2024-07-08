@@ -5,8 +5,10 @@
     "dotnet lambda help",
     "All the command line options for the Lambda command can be specified in this file."
   ],
-  "profile": "",
-  "region": "",
+  "profile": "PowerUserAccess-127537976056",
+  "region": "us-east-2",
+  "stack-name": "config-service-stack",
+  "s3-bucket": "lambda-service-templates",
   "configuration": "Release",
   "s3-prefix": "ConfigService/",
   "template": "serverless.template",
