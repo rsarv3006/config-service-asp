@@ -2,6 +2,7 @@
 using ApiAlerts.Common.Services;
 using ApiUtilities.Common.Handlers;
 using ApiUtilities.Common.Interfaces;
+using ConfigService.Repositories;
 using DotNetEnv;
 using DotNetEnv.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -29,8 +30,8 @@ public class Startup
     services.AddSingleton<IApiConfig, ApiConfig>();
     services.AddScoped<IRequestHandler, RequestHandler>();
 
-    services.AddScoped<Repositories.ConfigRepository>();
-    services.AddScoped<Repositories.UserRepository>();
+    services.AddScoped<ConfigRepository>();
+    services.AddScoped<UserRepository>();
     services.AddScoped<AlertService>();
     services.AddHealthChecks();
 

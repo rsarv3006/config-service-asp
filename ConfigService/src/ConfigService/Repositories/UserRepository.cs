@@ -1,4 +1,5 @@
 using ConfigService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConfigService.Repositories;
 
@@ -25,5 +26,15 @@ public class UserRepository
     _context.Users.Add(user);
     await _context.SaveChangesAsync();
     return user;
+  }
+  
+  public async Task<User?> GetUser(string appName)
+  {
+    return await _context.Users.FirstOrDefaultAsync(u => u.AppName == appName);
+  }
+  
+  public async Task<User?> GetUser(Guid userId)
+  {
+    return await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
   }
 }

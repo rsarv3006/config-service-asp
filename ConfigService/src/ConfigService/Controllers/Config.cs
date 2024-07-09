@@ -5,6 +5,7 @@ using ConfigService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using DotNetEnv;
 using ApiAlerts.Common.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConfigService.Controllers;
 
@@ -34,6 +35,7 @@ public class ConfigController : ControllerBase
   }
 
   [HttpPost("{appName}")]
+  [Authorize]
   public async Task<ActionResult<Config>> CreateConfig(string appName, [FromBody] JsonDocument config)
   {
     var configEntity = await _configRepository.CreateConfig(appName, config);
@@ -48,6 +50,7 @@ public class ConfigController : ControllerBase
   }
 
   [HttpPost("{appName}/activate/{version}")]
+  [Authorize]
   public async Task<ActionResult<Config>> ActivateConfig(string appName, int version)
   {
     var config = await _configRepository.MakeConfigActive(appName, version);
